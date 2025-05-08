@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akari Store - Fashion</title>
+    <title>Akari Store - Products</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'akari-pink': '#ff1493',
-                        'akari-pink-light': '#ff69b4',
-                        'akari-pink-dark': '#c71585',
+                        'akari-pink': '#ec0d7b',
                         'akari-black': '#1A1A1A',
                     }
                 }
@@ -21,60 +19,14 @@
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        .gradient-bg {
-            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
-        }
-        .hover-scale {
-            transition: transform 0.3s ease;
-        }
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        .pink-section-title {
-            color: #ff1493;
-            font-weight: bold;
-            position: relative;
-            display: inline-block;
-        }
-        .pink-section-title::after {
-            content: '';
-            display: block;
-            width: 60%;
-            height: 4px;
-            background: linear-gradient(90deg, #ff1493 0%, #ff69b4 100%);
-            border-radius: 2px;
-            margin: 0.5rem auto 0 auto;
-        }
-        .pink-card {
-            background: linear-gradient(135deg, #ff69b4 0%, #ffe4f7 100%);
-            border: 2px solid #ff1493;
-            box-shadow: 0 4px 24px 0 #ff149355;
-        }
-        .pink-btn {
-            background: #ff1493;
-            color: #fff;
-            border: none;
-            transition: background 0.2s;
-        }
-        .pink-btn:hover {
-            background: #c71585;
-        }
-        .pink-icon {
-            color: #ff1493;
-        }
-    </style>
 </head>
 <body class="bg-gray-50">
     <!-- Navigation -->
     <nav class="bg-white shadow-lg text-akari-black fixed w-full top-0 z-50 animate__animated animate__fadeInDown">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
-                <!-- Logo with Akari Store text -->
-                <a href="index.html" class="flex items-center space-x-2">
-                    <img src="./favicon.png" alt="Akari Store Logo" class="w-10 h-10 object-contain rounded bg-white shadow" style="background: #fff;">
-                    <span class="text-2xl font-bold text-akari-pink" style="color: #ff1493;">Akari Store</span>
-                </a>
+                <!-- Logo -->
+                <a href="index.html" class="text-2xl font-bold text-akari-pink">Akari Store</a>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
@@ -107,6 +59,29 @@
                 </button>
             </div>
         </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Products</a>
+                    <a href="news.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">News</a>
+                    <a href="about.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">About Us</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Contact</a>
+                    <div id="mobileLoginButton" class="hidden">
+                        <a href="login.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Login</a>
+                    </div>
+                    <div id="mobileUserMenu" class="hidden">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-akari-pink text-white flex items-center justify-center font-bold" id="mobileUserInitial"></div>
+                            <button id="mobileLogoutButton" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
     <!-- Products Section -->
     <section class="pt-32 pb-20">
@@ -343,21 +318,6 @@
 
         // Update UI on page load
         document.addEventListener('DOMContentLoaded', updateLoginUI);
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenuButton && mobileMenu) {
-                mobileMenuButton.addEventListener('click', function() {
-                    mobileMenu.classList.toggle('hidden');
-                });
-                mobileMenu.querySelectorAll('a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        mobileMenu.classList.add('hidden');
-                    });
-                });
-            }
-        });
     </script>
 </body>
 </html>
