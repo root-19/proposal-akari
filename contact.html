@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akari Store - Contact Us</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'akari-pink': '#f78da7',
+                        'akari-black': '#1A1A1A',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Simplified Navigation -->
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg text-akari-black fixed w-full top-0 z-50 animate__animated animate__fadeInDown">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo with Akari Store text -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="./favicon.png" alt="Akari Store Logo" class="w-10 h-10 object-contain rounded bg-white shadow" style="background: #fff;">
+                    <span class="text-2xl font-bold text-akari-pink" style="color: #ff1493;">Akari Store</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Products</a>
+                    <a href="news.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">News</a>
+                    <a href="about.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">About Us</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Contact</a>
+                    
+                    <!-- User Icon/Login Button -->
+                    <div class="relative" id="userMenu">
+                        <div id="loginButton" class="hidden">
+                            <a href="login.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Login</a>
+                        </div>
+                        <div id="userIcon" class="hidden cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-akari-pink text-white flex items-center justify-center font-bold" id="userInitial"></div>
+                            <!-- Dropdown Menu -->
+                            <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1" id="userDropdown">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="logoutButton">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 hover:text-akari-pink focus:outline-none" id="mobile-menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Products</a>
+                    <a href="news.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">News</a>
+                    <a href="about.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">About Us</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Contact</a>
+                    <div id="mobileLoginButton" class="hidden">
+                        <a href="login.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Login</a>
+                    </div>
+                    <div id="mobileUserMenu" class="hidden">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-akari-pink text-white flex items-center justify-center font-bold" id="mobileUserInitial"></div>
+                            <button id="mobileLogoutButton" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contact Section -->
+    <section class="pt-24 pb-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeIn">Contact Us</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Contact Form -->
+                <div class="bg-white p-8 rounded-lg shadow-lg animate__animated animate__fadeInLeft">
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="name">Name</label>
+                            <input type="text" id="name" class="w-full p-3 border rounded-lg focus:outline-none focus:border-akari-pink" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="email">Email</label>
+                            <input type="email" id="email" class="w-full p-3 border rounded-lg focus:outline-none focus:border-akari-pink" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2" for="message">Message</label>
+                            <textarea id="message" rows="4" class="w-full p-3 border rounded-lg focus:outline-none focus:border-akari-pink" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-akari-pink text-white py-3 rounded-lg hover:bg-pink-600 transition-colors">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="bg-white p-8 rounded-lg shadow-lg animate__animated animate__fadeInRight">
+                    <h2 class="text-2xl font-bold mb-6">Get in Touch</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-akari-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <p>123 Fashion Street, Tokyo, Japan</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-akari-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <p>contact@akaristore.com</p>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-akari-pink" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <p>+81 123 456 7890</p>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="mt-8 h-64 bg-gray-200 rounded-lg flex items-center justify-center">
+                        <p class="text-gray-500">Map will be displayed here</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <div class="fixed bottom-8 right-8 space-y-4">
+        <button id="likeBtn" class="bg-akari-pink text-white p-4 rounded-full shadow-lg hover:bg-pink-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+        </button>
+        <button id="chatBtn" class="bg-akari-black text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="hidden fixed bottom-24 right-8 w-96 bg-white rounded-lg shadow-xl">
+        <div class="p-4 bg-akari-pink text-white rounded-t-lg">
+            <h3 class="text-lg font-semibold">Chat with us</h3>
+        </div>
+        <div class="p-4 h-96 overflow-y-auto">
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p>Hello! How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t">
+            <input type="text" placeholder="Type your message..." class="w-full p-2 border rounded-lg focus:outline-none focus:border-akari-pink">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-akari-black text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Akari Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 

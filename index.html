@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akari Store - Fashion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'akari-pink': '#ff1493',
+                        'akari-pink-light': '#ff69b4',
+                        'akari-pink-dark': '#c71585',
+                        'akari-black': '#1A1A1A',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .pink-section-title {
+            color: #ff1493;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+        .pink-section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff1493 0%, #ff69b4 100%);
+            border-radius: 2px;
+            margin: 0.5rem auto 0 auto;
+        }
+        .pink-card {
+            background: linear-gradient(135deg, #ff69b4 0%, #ffe4f7 100%);
+            border: 2px solid #ff1493;
+            box-shadow: 0 4px 24px 0 #ff149355;
+        }
+        .pink-btn {
+            background: #ff1493;
+            color: #fff;
+            border: none;
+            transition: background 0.2s;
+        }
+        .pink-btn:hover {
+            background: #c71585;
+        }
+        .pink-icon {
+            color: #ff1493;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg text-akari-black fixed w-full top-0 z-50 animate__animated animate__fadeInDown">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo with Akari Store text -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="./favicon.png" alt="Akari Store Logo" class="w-10 h-10 object-contain rounded bg-white shadow" style="background: #fff;">
+                    <span class="text-2xl font-bold text-akari-pink" style="color: #ff1493;">Akari Store</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Products</a>
+                    <a href="news.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">News</a>
+                    <a href="about.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">About Us</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Contact</a>
+                    
+                    <!-- User Icon/Login Button -->
+                    <div class="relative" id="userMenu">
+                        <div id="loginButton" class="hidden">
+                            <a href="login.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Login</a>
+                        </div>
+                        <div id="userIcon" class="hidden cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-akari-pink text-white flex items-center justify-center font-bold" id="userInitial"></div>
+                            <!-- Dropdown Menu -->
+                            <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1" id="userDropdown">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="logoutButton">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 hover:text-akari-pink focus:outline-none" id="mobile-menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-white border-t" id="mobile-menu">
+            <div class="container mx-auto px-4 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Products</a>
+                    <a href="news.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">News</a>
+                    <a href="about.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">About Us</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Contact</a>
+                    <div id="mobileLoginButton" class="hidden">
+                        <a href="login.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors py-2">Login</a>
+                    </div>
+                    <div id="mobileUserMenu" class="hidden">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-akari-pink text-white flex items-center justify-center font-bold" id="mobileUserInitial"></div>
+                            <button id="mobileLogoutButton" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white pt-32 pb-40">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 animate__animated animate__fadeInLeft">
+                    <h1 class="text-5xl font-bold leading-tight">Build Better with Quality Tools & Materials</h1> <p class="text-xl text-white/90">Explore our selection of durable hardware products designed for both home improvement and professional use.</p>
+                    <div class="flex space-x-4">
+                        <a href="products.html" class="bg-white text-akari-pink px-8 py-4 rounded-xl font-semibold hover:bg-akari-pink-light hover:text-white transition-all duration-300">Shop Now</a>
+                        <a href="#featured" class="border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-akari-pink transition-all duration-300">Learn More</a>
+                    </div>
+                </div>
+                <div class="relative animate__animated animate__fadeInRight">
+                    <img src="./favicon.png" alt="Akari Store Logo" class="mx-auto w-64 h-64 object-contain rounded-2xl shadow-2xl bg-white">
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-xl">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-akari-pink rounded-full flex items-center justify-center">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">Trusted by</p>
+                                <p class="font-bold text-akari-black">100,000+ Happy Customers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Categories Cards directly below hero, no extra background -->
+            <div class="flex flex-col md:flex-row gap-8 mt-16">
+                <!-- Category 1 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow pink-card">
+                    <div class="aspect-w-16 aspect-h-9 bg-white/60 relative">
+                        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80" alt="Traditional Akari" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-akari-pink/60 to-transparent"></div>
+                        <div class="absolute bottom-0 p-8 text-akari-black">
+                            <h3 class="text-2xl font-bold mb-2 pink-section-title">Traditional Akari</h3>
+                            <p class="text-akari-pink mb-4">Discover our collection of authentic Akari designs</p>
+                            <a href="products.html" class="inline-block pink-btn px-4 py-2 rounded-full">View Collection →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category 2 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow pink-card">
+                    <div class="aspect-w-16 aspect-h-9 bg-white/60 relative">
+                        <img src="./ASK-001Wb1t1.webp" alt="Modern Akari" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-akari-pink/60 to-transparent"></div>
+                        <div class="absolute bottom-0 p-8 text-akari-black">
+                            <h3 class="text-2xl font-bold mb-2 pink-section-title">Modern Akari</h3>
+                            <p class="text-akari-pink mb-4">Contemporary takes on traditional wear</p>
+                            <a href="products.html" class="inline-block pink-btn px-4 py-2 rounded-full">View Collection →</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Category 3 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-shadow pink-card">
+                    <div class="aspect-w-16 aspect-h-9 bg-white/60 relative">
+                        <img src="https://www.akari.store/cdn/shop/products/ACT-7W14C-_1.png?v=1666942406&width=360" alt="Accessories" class="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-akari-pink/60 to-transparent"></div>
+                        <div class="absolute bottom-0 p-8 text-akari-black">
+                            <h3 class="text-2xl font-bold mb-2 pink-section-title">Accessories</h3>
+                            <p class="text-akari-pink mb-4">Traditional Akari accessories and modern pieces</p>
+                            <a href="products.html" class="inline-block pink-btn px-4 py-2 rounded-full">View Collection →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="featured" class="py-20 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl pink-section-title mb-4">Featured Products</h2>
+                <p class="text-akari-pink">Discover our most popular smart furniture pieces</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Modern Living Room Set -->
+                <div class="pink-card rounded-2xl overflow-hidden shadow-lg hover-scale">
+                    <div class="relative">
+                        <img src="./ASK-001Wb1t1.webp" alt="Modern Living Room Set" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-akari-pink text-white px-3 py-1 rounded-full text-sm font-medium">New</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 pink-section-title">Lorem ipsum dolor sit amet,</h3>
+                        <p class="text-akari-pink mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-akari-pink">₱250,000</span>
+                            <a href="" class="pink-btn px-4 py-2 rounded-lg">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Dining Set -->
+                <div class="pink-card rounded-2xl overflow-hidden shadow-lg hover-scale">
+                    <div class="relative">
+                        <img src="./ACT-7W14C-_1.webp" alt="Smart Dining Set" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-akari-pink text-white px-3 py-1 rounded-full text-sm font-medium">Best Seller</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 pink-section-title">Lorem ipsum dolor sit amet,</h3>
+                        <p class="text-akari-pink mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-akari-pink">₱180,000</span>
+                            <a href="" class="pink-btn px-4 py-2 rounded-lg">View Details</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Bedroom Suite -->
+                <div class="pink-card rounded-2xl overflow-hidden shadow-lg hover-scale">
+                    <div class="relative">
+                        <img src="./01-ProductsSwitch_6a03ee41-6a3f-41a5-83b2-bd8743bf3b25.webp" alt="Smart Bedroom Suite" class="w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4 bg-akari-pink text-white px-3 py-1 rounded-full text-sm font-medium">Popular</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 pink-section-title">Lorem ipsum dolor sit amet,</h3>
+                        <p class="text-akari-pink mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-akari-pink">₱320,000</span>
+                            <a href="" class="pink-btn px-4 py-2 rounded-lg">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl pink-section-title text-center mb-12">Why Choose Akari Store?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-8 rounded-2xl bg-white text-akari-black border-4 border-pink-200">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 pink-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 pink-section-title">Smart Technology</h3>
+                    <p class="text-akari-black/80">Integrated smart features for modern living</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-white text-akari-black border-4 border-pink-200">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 pink-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 pink-section-title">Premium Quality</h3>
+                    <p class="text-akari-black/80">High-end materials and craftsmanship</p>
+                </div>
+                <div class="text-center p-8 rounded-2xl bg-white text-akari-black border-4 border-pink-200">
+                    <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <svg class="w-8 h-8 pink-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4 pink-section-title">Fast Delivery</h3>
+                    <p class="text-akari-black/80">Quick and reliable shipping service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 bg-akari-pink">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-4xl font-bold text-white mb-8">Join Our Newsletter</h2>
+                <p class="text-white/90 mb-8">Stay updated with our latest collections and exclusive offers.</p>
+                <form class="flex flex-col sm:flex-row gap-4">
+                    <input type="email" placeholder="Enter your email" class="flex-1 px-6 py-4 rounded-full focus:outline-none focus:ring-2 focus:ring-white">
+                    <button type="submit" class="px-8 py-4 bg-white text-akari-pink rounded-full hover:bg-gray-100 transition-colors font-medium">
+                        Subscribe
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <div class="fixed bottom-8 right-8 space-y-4">
+        <button id="likeBtn" class="bg-akari-pink text-white p-4 rounded-full shadow-lg hover:bg-pink-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+        </button>
+        <button id="chatBtn" class="bg-akari-black text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="hidden fixed bottom-24 right-8 w-96 bg-white rounded-lg shadow-xl">
+        <div class="p-4 bg-akari-pink text-white rounded-t-lg">
+            <h3 class="text-lg font-semibold">Chat with us</h3>
+        </div>
+        <div class="p-4 h-96 overflow-y-auto">
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p>Hello! How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t">
+            <input type="text" placeholder="Type your message..." class="w-full p-2 border rounded-lg focus:outline-none focus:border-akari-pink">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-akari-black text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Akari Store</h3>
+                    <p class="text-gray-400">Bringing Akari fashion to the world with style and elegance.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="products.html" class="text-gray-400 hover:text-white transition-colors">Products</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>123 Fashion Street</li>
+                        <li>Tokyo, Japan</li>
+                        <li>contact@akaristore.com</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Follow Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Akari Store. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Add animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                    }
+                });
+            });
+
+            animatedElements.forEach(element => {
+                element.style.visibility = 'hidden';
+                observer.observe(element);
+            });
+
+            // Check login status and update UI
+            function updateLoginUI() {
+                const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+                const userEmail = localStorage.getItem('userEmail');
+                
+                // Desktop view
+                const loginButton = document.getElementById('loginButton');
+                const userIcon = document.getElementById('userIcon');
+                const userInitial = document.getElementById('userInitial');
+                
+                // Mobile view
+                const mobileLoginButton = document.getElementById('mobileLoginButton');
+                const mobileUserMenu = document.getElementById('mobileUserMenu');
+                const mobileUserInitial = document.getElementById('mobileUserInitial');
+                
+                if (isLoggedIn && userEmail) {
+                    // Show user icon
+                    loginButton.classList.add('hidden');
+                    userIcon.classList.remove('hidden');
+                    mobileLoginButton.classList.add('hidden');
+                    mobileUserMenu.classList.remove('hidden');
+                    
+                    // Set user initial
+                    const initial = userEmail.charAt(0).toUpperCase();
+                    userInitial.textContent = initial;
+                    mobileUserInitial.textContent = initial;
+                } else {
+                    // Show login button
+                    loginButton.classList.remove('hidden');
+                    userIcon.classList.add('hidden');
+                    mobileLoginButton.classList.remove('hidden');
+                    mobileUserMenu.classList.add('hidden');
+                }
+            }
+
+            // Toggle mobile menu
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Toggle dropdown menu
+            const userIcon = document.getElementById('userIcon');
+            const userDropdown = document.getElementById('userDropdown');
+            
+            userIcon.addEventListener('click', () => {
+                userDropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!userIcon.contains(e.target)) {
+                    userDropdown.classList.add('hidden');
+                }
+            });
+
+            // Handle logout
+            const logoutButton = document.getElementById('logoutButton');
+            const mobileLogoutButton = document.getElementById('mobileLogoutButton');
+            
+            function handleLogout() {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                localStorage.removeItem('userName');
+                updateLoginUI();
+                window.location.href = 'index.html';
+            }
+            
+            logoutButton.addEventListener('click', handleLogout);
+            mobileLogoutButton.addEventListener('click', handleLogout);
+
+            // Update UI on page load
+            updateLoginUI();
+        });
+
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                // Close menu when a link is clicked
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

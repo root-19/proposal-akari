@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akari Store - Fashion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'akari-pink': '#ff1493',
+                        'akari-pink-light': '#ff69b4',
+                        'akari-pink-dark': '#c71585',
+                        'akari-black': '#1A1A1A',
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gradient-bg {
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+        }
+        .hover-scale {
+            transition: transform 0.3s ease;
+        }
+        .hover-scale:hover {
+            transform: scale(1.05);
+        }
+        .pink-section-title {
+            color: #ff1493;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+        .pink-section-title::after {
+            content: '';
+            display: block;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff1493 0%, #ff69b4 100%);
+            border-radius: 2px;
+            margin: 0.5rem auto 0 auto;
+        }
+        .pink-card {
+            background: linear-gradient(135deg, #ff69b4 0%, #ffe4f7 100%);
+            border: 2px solid #ff1493;
+            box-shadow: 0 4px 24px 0 #ff149355;
+        }
+        .pink-btn {
+            background: #ff1493;
+            color: #fff;
+            border: none;
+            transition: background 0.2s;
+        }
+        .pink-btn:hover {
+            background: #c71585;
+        }
+        .pink-icon {
+            color: #ff1493;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg text-akari-black fixed w-full top-0 z-50 animate__animated animate__fadeInDown">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo with Akari Store text -->
+                <a href="index.html" class="flex items-center space-x-2">
+                    <img src="./favicon.png" alt="Akari Store Logo" class="w-10 h-10 object-contain rounded bg-white shadow" style="background: #fff;">
+                    <span class="text-2xl font-bold text-akari-pink" style="color: #ff1493;">Akari Store</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Home</a>
+                    <a href="products.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Products</a>
+                    <a href="news.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">News</a>
+                    <a href="about.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">About Us</a>
+                    <a href="contact.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Contact</a>
+                    
+                    <!-- User Icon/Login Button -->
+                    <div class="relative" id="userMenu">
+                        <div id="loginButton" class="hidden">
+                            <a href="login.html" class="text-gray-700 hover:text-akari-pink font-medium transition-colors">Login</a>
+                        </div>
+                        <div id="userIcon" class="hidden cursor-pointer">
+                            <div class="w-8 h-8 rounded-full bg-akari-pink text-white flex items-center justify-center font-bold" id="userInitial"></div>
+                            <!-- Dropdown Menu -->
+                            <div class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1" id="userDropdown">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" id="logoutButton">Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-700 hover:text-akari-pink focus:outline-none" id="mobile-menu-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+    <!-- News Section -->
+    <section class="pt-24 pb-12">
+        <div class="container mx-auto px-4">
+            <h1 class="text-4xl font-bold text-center mb-12 animate__animated animate__fadeInDown">Latest News</h1>
+            
+            <!-- Featured Article -->
+            <div class="mb-12 animate__animated animate__fadeInUp">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                    <div class="md:flex">
+                        <div class="md:w-1/2 animate__animated animate__fadeInLeft">
+                            <div class="h-64 bg-gray-200 flex items-center justify-center">
+                                <p class="text-gray-500">Featured Image</p>
+                            </div>
+                        </div>
+                        <div class="p-8 md:w-1/2 animate__animated animate__fadeInRight">
+                            <h2 class="text-2xl font-bold mb-4">New Spring Collection Launch</h2>
+                            <p class="text-gray-600 mb-4">Discover our latest spring collection featuring vibrant colors and modern designs. The collection will be available in stores and online starting next week.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <span>March 15, 2024</span>
+                                <span class="mx-2">•</span>
+                                <span>5 min read</span>
+                            </div>
+                            <a href="#" class="inline-block mt-4 text-akari-pink hover:text-pink-600 transition-colors duration-300">Read More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- News Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- News Card 1 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <p class="text-gray-500">News Image</p>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Store Opening in Shibuya</h3>
+                        <p class="text-gray-600 mb-4">We're excited to announce the opening of our new store in the heart of Shibuya, Tokyo.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>March 10, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>3 min read</span>
+                        </div>
+                        <a href="#" class="inline-block mt-4 text-akari-pink hover:text-pink-600 transition-colors duration-300">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- News Card 2 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <p class="text-gray-500">News Image</p>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Sustainability Initiative</h3>
+                        <p class="text-gray-600 mb-4">Akari Store commits to sustainable fashion with new eco-friendly collection.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>March 5, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>4 min read</span>
+                        </div>
+                        <a href="#" class="inline-block mt-4 text-akari-pink hover:text-pink-600 transition-colors duration-300">Read More →</a>
+                    </div>
+                </div>
+
+                <!-- News Card 3 -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <p class="text-gray-500">News Image</p>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Fashion Week Collaboration</h3>
+                        <p class="text-gray-600 mb-4">Akari Store partners with Tokyo Fashion Week for exclusive runway show.</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span>March 1, 2024</span>
+                            <span class="mx-2">•</span>
+                            <span>4 min read</span>
+                        </div>
+                        <a href="#" class="inline-block mt-4 text-akari-pink hover:text-pink-600 transition-colors duration-300">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <div class="fixed bottom-8 right-8 space-y-4">
+        <button id="likeBtn" class="bg-akari-pink text-white p-4 rounded-full shadow-lg hover:bg-pink-600 transition-colors animate__animated animate__pulse animate__infinite">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+            </svg>
+        </button>
+        <button id="chatBtn" class="bg-akari-black text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition-colors animate__animated animate__fadeIn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+        </button>
+    </div>
+
+    <!-- Chat Modal -->
+    <div id="chatModal" class="hidden fixed bottom-24 right-8 w-96 bg-white rounded-lg shadow-xl animate__animated animate__fadeIn">
+        <div class="p-4 bg-akari-pink text-white rounded-t-lg">
+            <h3 class="text-lg font-semibold">Chat with us</h3>
+        </div>
+        <div class="p-4 h-96 overflow-y-auto">
+            <div class="space-y-4">
+                <div class="bg-gray-100 p-3 rounded-lg">
+                    <p>Hello! How can I help you today?</p>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t">
+            <input type="text" placeholder="Type your message..." class="w-full p-2 border rounded-lg focus:outline-none focus:border-akari-pink">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-akari-black text-white py-8 animate__animated animate__fadeIn">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Akari Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Add animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animatedElements = document.querySelectorAll('.animate__animated');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.visibility = 'visible';
+                    }
+                });
+            });
+
+            animatedElements.forEach(element => {
+                element.style.visibility = 'hidden';
+                observer.observe(element);
+            });
+        });
+
+        // Check login status and update UI
+        function updateLoginUI() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const userEmail = localStorage.getItem('userEmail');
+            
+            // Desktop view
+            const loginButton = document.getElementById('loginButton');
+            const userIcon = document.getElementById('userIcon');
+            const userInitial = document.getElementById('userInitial');
+            
+            // Mobile view
+            const mobileLoginButton = document.getElementById('mobileLoginButton');
+            const mobileUserMenu = document.getElementById('mobileUserMenu');
+            const mobileUserInitial = document.getElementById('mobileUserInitial');
+            
+            if (isLoggedIn && userEmail) {
+                // Show user icon
+                loginButton.classList.add('hidden');
+                userIcon.classList.remove('hidden');
+                mobileLoginButton.classList.add('hidden');
+                mobileUserMenu.classList.remove('hidden');
+                
+                // Set user initial
+                const initial = userEmail.charAt(0).toUpperCase();
+                userInitial.textContent = initial;
+                mobileUserInitial.textContent = initial;
+            } else {
+                // Show login button
+                loginButton.classList.remove('hidden');
+                userIcon.classList.add('hidden');
+                mobileLoginButton.classList.remove('hidden');
+                mobileUserMenu.classList.add('hidden');
+            }
+        }
+
+        // Toggle dropdown menu
+        const userIcon = document.getElementById('userIcon');
+        const userDropdown = document.getElementById('userDropdown');
+        
+        userIcon.addEventListener('click', () => {
+            userDropdown.classList.toggle('hidden');
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!userIcon.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Handle logout
+        const logoutButton = document.getElementById('logoutButton');
+        const mobileLogoutButton = document.getElementById('mobileLogoutButton');
+        
+        function handleLogout() {
+            localStorage.removeItem('isLoggedIn');
+            localStorage.removeItem('userEmail');
+            updateLoginUI();
+            window.location.href = 'index.html';
+        }
+        
+        logoutButton.addEventListener('click', handleLogout);
+        mobileLogoutButton.addEventListener('click', handleLogout);
+
+        // Update UI on page load
+        document.addEventListener('DOMContentLoaded', updateLoginUI);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.add('hidden');
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
